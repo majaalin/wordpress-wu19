@@ -18,6 +18,6 @@
             $title = $data->post_title;
             $url = $data->guid;
             ?>
-            <a href="<?php echo $url;?>" class="navbar-brand"><?php echo $title;?></a>
+            <a class="nav-item nav-link active" href="<?php echo $url;?>"><?php echo $title;?></a>
         <?php endforeach; ?>
     </nav>

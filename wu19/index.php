@@ -13,7 +13,6 @@
 
 <div class="row">
         <div class="col-sm">
-    one column
         </div>
     </div> 
 

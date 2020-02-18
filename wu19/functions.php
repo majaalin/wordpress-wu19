@@ -7,3 +7,5 @@ add_action('after_setup_theme', function () {
 
 // Hide admin bar on the front end
 add_filter('show_admin_bar', '__return_false');
+
+wp_enqueue_style( 'style', get_template_directory_uri() . '/css/style.css',false,'1.1','all');
