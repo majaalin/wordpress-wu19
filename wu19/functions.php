@@ -8,4 +8,14 @@ add_action('after_setup_theme', function () {
 // Hide admin bar on the front end
 add_filter('show_admin_bar', '__return_false');
 
-wp_enqueue_style( 'style', get_template_directory_uri() . '/css/style.css',false,'1.1','all');
+// Enqueue styles and scripts the right way.
+add_action('wp_enqueue_scripts', function () {
+    wp_deregister_script('jquery');
+    wp_enqueue_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+    wp_register_script('jquery', 'https://code.jquery.com/jquery-3.2.1.slim.min.js', '', '', true);
+    wp_register_script('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', '', '', true);
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('bootstrap');
+});
+
+add_theme_support( 'post-thumbnails' );

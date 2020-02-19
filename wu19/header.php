@@ -5,19 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
   <?php wp_head(); ?>
 </head>
-<body>
-<div class="container">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <?php $pages = get_pages();?>
-        <?php foreach ($pages as $page => $data): 
-            $title = $data->post_title;
-            $url = $data->guid;
-            ?>
-            <a class="nav-item nav-link active" href="<?php echo $url;?>"><?php echo $title;?></a>
-        <?php endforeach; ?>
-    </nav>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a>
+  
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav mr-auto">
+            <?php foreach (get_pages(['sort_column' => 'menu_order']) as $page): ?>
+                <li class="nav-item <?php if (is_home() && $page->ID == get_option('page_for_posts') || is_page($page)) { echo 'active'; } ?>">
+                    <a class="nav-link" href="<?php echo get_permalink($page); ?>">
+                        <?php echo $page->post_title; ?>
+                    </a><!-- /nav-link -->
+                </li><!-- /nav-item -->
+            <?php endforeach; ?>
+        </ul><!-- /navbar -->
+    </div><!-- /collapse -->
+  </nav>
